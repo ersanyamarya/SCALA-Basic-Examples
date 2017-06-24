@@ -1,0 +1,37 @@
+import org.apache.spark._
+import org.apache.spark.SparkContext._
+import org.apache.spark.sql._
+import org.apache.log4j._
+import scala.math.min
+
+object PurchaseByCustomersDataFrames {
+
+  case class Customer(customerID: Int, purchaseAmount: Float)
+
+  def mapper(line: String): Customer = {
+    val fields = line.split(',')
+
+    val customer: Customer = Customer(fields(1).toInt, fields(2).toInt)
+    return customer
+  }
+
+  def main(args: Array[String]) {
+
+    // Set the log level to only print errors
+    Logger.getLogger("org").setLevel(Level.ERROR)
+
+val spark = SparkSession
+      .builder
+      .appName("SparkSQL")
+      .master("local[*]")
+      .getOrCreate()
+      
+    import spark.implicits._
+    val lines = spark.sparkContext.textFile("/home/arya/workspaces/workspace_scala/customer-orders.csv")
+    val customer = lines.map(mapper).toDS().cache()
+    customer.printSchema()
+    customer.groupBy("purchaseAmount").count().show()
+
+  }
+
+}

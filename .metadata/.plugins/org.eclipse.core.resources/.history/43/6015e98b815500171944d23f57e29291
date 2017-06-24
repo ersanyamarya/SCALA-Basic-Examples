@@ -1,0 +1,23 @@
+import org.apache.spark._
+import org.apache.spark.SparkContext._
+import org.apache.log4j._
+
+object CountWords {
+  def parseLine(line: String) = {
+    val fields = line.split(" ")
+    (fields.length)
+  }
+  var i = 0
+  def main(args: Array[String]) {
+    Logger.getLogger("org").setLevel(Level.ERROR)
+    val sc = new SparkContext("local[*]", "CountWords")
+    val lines = sc.textFile("/home/arya/workspaces/workspace_scala/test.txt")
+    val words = lines.map(parseLine)
+    val result = words.collect()
+    for (result <- result) {
+      println("Number of Words in line |" + i + "| is " + result)
+      i+=1
+
+    }
+  }
+}

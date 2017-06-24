@@ -1,0 +1,10 @@
+package com.sanyam.test.practice
+
+object arraySwap {
+  def main(args: Array[String]): Unit = {
+    val arr = Array(1, 2, 3, 4, 5)
+    for (a <- 0 to arr.length; b <- 1 to 2) {
+      arr(a)=arr(a+1)
+    }
+  }
+}

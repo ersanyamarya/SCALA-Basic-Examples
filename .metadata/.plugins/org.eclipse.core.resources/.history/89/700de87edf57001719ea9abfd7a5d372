@@ -1,0 +1,12 @@
+package com.sanyam.test.practice
+
+object AverageArr {
+  def main(args: Array[String]): Unit = {
+    var arr = Array(2.52,85.36,10.23,56.89)
+    var sumo =0
+    var avg = arr.
+    for (a <- 0 to arr.length){
+      sumo = sumo + arr(a)
+    }
+  }
+}

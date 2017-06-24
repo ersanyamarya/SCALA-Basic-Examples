@@ -1,0 +1,20 @@
+package com.sanyam.test.traitsuseg
+trait Friend {
+  val name: String
+  println("--------------------------------------------------")
+  def listen() = println("I am " + name + " and I am Listening")
+  println("--------------------------------------------------")
+}
+class Humans(val name: String) extends Friend
+class Animal(val name: String)
+class Dog(override val name: String) extends Animal(name) with Friend
+
+object Useg1 {
+  def main(args: Array[String]): Unit = {
+    val sameer = new Humans("Sameer")
+    sameer.listen()
+ 
+    val buddy = new Dog("Buddy")
+    buddy.listen()
+  }
+}

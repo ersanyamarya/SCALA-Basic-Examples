@@ -1,0 +1,13 @@
+package com.sanyam.test.practice
+
+object arraySwap {
+  def main(args: Array[String]): Unit = {
+    var arr = Array(1, 2, 3, 4, 5)
+    for (a <- 1 until (arr.length, 2)) {
+      val t = arr (a-1)
+      arr(a-1)=arr(a)
+      arr(a)=t
+    }
+    println(arr.mkString(", "))
+  }
+}
